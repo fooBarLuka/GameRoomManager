@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RingtoneActivity">
+
+    <ImageView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/extra_time_money_edit_text_id"
+        android:src="@android:drawable/ic_lock_idle_alarm"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+
+    <Button
+        android:id="@+id/turn_off_ringtone_button_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Turn off ringtone"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/add_extra_time_button_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add extra time"
+        app:layout_constraintBottom_toTopOf="@+id/turn_off_ringtone_button_id" />
+
+    <EditText
+        android:id="@+id/extra_time_money_edit_text_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Extra money"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/extra_time_time_edit_text_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/extra_time_time_edit_text_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Extra time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/extra_time_money_edit_text_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/reserve_navigation_id"
+        android:title="reserves" />
+
+    <item
+        android:id="@+id/consoles_navigation_id"
+        android:title="consoles" />
+
+    <item
+        android:id="@+id/add_console_navigation_id"
+        android:title="add console" />
+
+</menu>
