@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:layout_marginBottom="5dp"
-    android:background="#FFC107"
-    android:weightSum="8">
+    android:background="#FFC107">
 
-    <HorizontalScrollView>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TableRow>
 
@@ -14,48 +15,47 @@
                 android:id="@+id/reserve_id_textview_id"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:text="-1" />
 
             <TextView
                 android:id="@+id/console_name_textview_id"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:text="console name" />
 
             <TextView
                 android:id="@+id/game_name_textview_id"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:text="pes 2019" />
 
             <TextView
                 android:id="@+id/money_textview_id"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:text="4 lali" />
 
             <TextView
                 android:id="@+id/time_start_textview_id"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
                 android:text="15:15:15" />
 
             <TextView
                 android:id="@+id/time_end_textview_id"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:text="16:15:15" />
+
+            <TextView
+                android:id="@+id/state_textview_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="finished" />
 
 
         </TableRow>
 
+    </TableLayout>
 
-    </HorizontalScrollView>
-
-</TableLayout>
+</HorizontalScrollView>

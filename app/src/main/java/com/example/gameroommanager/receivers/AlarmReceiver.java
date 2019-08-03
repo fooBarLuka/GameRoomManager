@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.gameroommanager.activities.RingtoneActivity;
 import com.example.gameroommanager.database.MyDataBase;
@@ -15,8 +16,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         MyDataBase.buildConsoleDataBase(context);
 
-        final int consoleId = intent.getIntExtra("consoleId", -1);
-        int reserveId = intent.getIntExtra("reserveId", -1);
+        final long consoleId = intent.getLongExtra("consoleId", -1);
+        long reserveId = intent.getLongExtra("reserveId", -1);
+        Log.e("on receive", "onCreate: " + reserveId);
 
         AsyncTask.execute(new Runnable() {
             @Override

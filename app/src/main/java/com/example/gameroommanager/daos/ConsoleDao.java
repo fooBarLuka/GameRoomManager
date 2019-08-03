@@ -26,7 +26,7 @@ public interface ConsoleDao {
     void updateConsole(Console console);
 
     @Query("UPDATE Console SET occupied = :newState WHERE id = :consoleId")
-    void updateConsoleState(int consoleId, boolean newState);
+    void updateConsoleState(long consoleId, boolean newState);
 
     @Delete
     void deleteConsole(Console console);

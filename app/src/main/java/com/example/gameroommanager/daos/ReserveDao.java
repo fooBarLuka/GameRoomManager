@@ -17,10 +17,10 @@ public interface ReserveDao{
     List<Reserve> getAllReserves();
 
     @Query("SELECT * FROM reserve WHERE id = :id")
-    Reserve getReserve(int id);
+    Reserve getReserve(long id);
 
     @Insert
-    void addReserve(Reserve reserve);
+    long addReserve(Reserve reserve);
 
     @Update
     void updateReserve(Reserve reserve);

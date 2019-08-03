@@ -6,26 +6,29 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Reserve {
 
-    public Reserve(int consoleId, String game, long started, double price){
+    public Reserve(long consoleId, String game, long started, double price){
         this.consoleId = consoleId;
         this.game = game;
         this.started = started;
-        finished = calculateFinishedTime(started, price);
+        finishedTime = calculateFinishedTime(started, price);
         this.price = price;
     }
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
+
+    public long consoleId;
+
+    public String game;
 
     public long started;
 
-    public long finished;
+    public long finishedTime;
 
     public double price;
 
-    public int consoleId;
+    public boolean finished = false;
 
-    public String game;
 
     private long calculateFinishedTime(long startedTime, double payment){
         return startedTime + (long)(payment / 4 * 1000 * 60 * 60);

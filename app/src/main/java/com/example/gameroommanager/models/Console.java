@@ -3,8 +3,6 @@ package com.example.gameroommanager.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
-
 @Entity
 public class Console {
 
@@ -15,11 +13,9 @@ public class Console {
     }
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
 
     public String tag;
-
-//    public List<String> games;
 
     public String games;
 

@@ -8,6 +8,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.gameroommanager.Utils.AlarmManagerUtil;
 import com.example.gameroommanager.daos.ConsoleDao;
 import com.example.gameroommanager.daos.ReserveDao;
 import com.example.gameroommanager.models.Console;
@@ -39,11 +40,13 @@ public abstract class MyDataBase extends RoomDatabase {
         });
     }
 
-    public static void addReserveAsynchronous(final Reserve reserve){
+    public static void addReserveAsynchronous(final Context context, final long consoleId, final Reserve reserve){
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                myDataBase.getReserveDao().addReserve(reserve);
+                long reserveId =  myDataBase.getReserveDao().addReserve(reserve);
+                AlarmManagerUtil.setAlarm(context, reserve.finishedTime, consoleId, reserveId);
+
             }
         });
     }

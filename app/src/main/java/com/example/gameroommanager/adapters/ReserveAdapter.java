@@ -48,6 +48,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveAdapter.ReserveH
         private TextView moneyTextView;
         private TextView startedTimeTextView;
         private TextView finishedTimeTextView;
+        private TextView stateTextView;
 
 
         public ReserveHolder(@NonNull View itemView) {
@@ -59,6 +60,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveAdapter.ReserveH
             moneyTextView = itemView.findViewById(R.id.money_textview_id);
             startedTimeTextView = itemView.findViewById(R.id.time_start_textview_id);
             finishedTimeTextView = itemView.findViewById(R.id.time_end_textview_id);
+            stateTextView = itemView.findViewById(R.id.state_textview_id);
         }
 
         public void setData(Reserve reserve){
@@ -67,7 +69,10 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveAdapter.ReserveH
             gameNameTextView.setText(reserve.game);
             moneyTextView.setText(reserve.price + "");
             startedTimeTextView.setText(convertTimeToDate(reserve.started));
-            finishedTimeTextView.setText(convertTimeToDate(reserve.finished));
+            finishedTimeTextView.setText(convertTimeToDate(reserve.finishedTime));
+            if(!reserve.finished){
+                stateTextView.setVisibility(View.INVISIBLE);
+            }
         }
 
         private String convertTimeToDate(long millis){

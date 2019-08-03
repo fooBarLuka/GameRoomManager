@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ConsoleAdapter extends RecyclerView.Adapter<ConsoleAdapter.ConsoleHolder> {
 
-    public ConsoleAdapter(List<Console> consoles){
+    public ConsoleAdapter(List<Console> consoles) {
         this.consoles.addAll(consoles);
         notifyDataSetChanged();
     }
@@ -47,12 +47,12 @@ public class ConsoleAdapter extends RecyclerView.Adapter<ConsoleAdapter.ConsoleH
         return consoles.size();
     }
 
-    public void setItems(List<Console> consoles){
+    public void setItems(List<Console> consoles) {
         this.consoles = consoles;
         notifyDataSetChanged();
     }
 
-    public class ConsoleHolder extends RecyclerView.ViewHolder{
+    public class ConsoleHolder extends RecyclerView.ViewHolder {
 
         private Console console;
         private TextView idTextView;
@@ -72,53 +72,52 @@ public class ConsoleAdapter extends RecyclerView.Adapter<ConsoleAdapter.ConsoleH
             reserveButton = itemView.findViewById(R.id.reserve_button_id);
         }
 
-        public void setData(Console console){
+        public void setData(Console console) {
             this.console = console;
             idTextView.setText(console.id + "");
             nameTextView.setText(console.tag);
-            if(console.occupied){
+            if (console.occupied) {
                 reserveButton.setVisibility(View.INVISIBLE);
             } else {
                 workingTextView.setVisibility(View.INVISIBLE);
             }
             List<String> gamesList = separateGames(console.games);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(nameTextView.getContext(),R.layout.support_simple_spinner_dropdown_item, gamesList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(nameTextView.getContext(), R.layout.support_simple_spinner_dropdown_item, gamesList);
             gamesSpinner.setAdapter(adapter);
 
             initUiActions();
         }
 
-        private void initUiActions(){
+        private void initUiActions() {
             reserveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Reserve newReserve = new Reserve(console.id, (String) gamesSpinner.getSelectedItem(),
                             System.currentTimeMillis(), Double.parseDouble(moneyEditText.getText().toString()));
 
+                    Log.e("sheqmnisas", "onCreate: " + newReserve.id);
                     reserveButton.setVisibility(View.INVISIBLE);
                     workingTextView.setVisibility(View.VISIBLE);
 
                     console.occupied = true;
                     MyDataBase.updateConsoleAsynchronous(console);
-                    MyDataBase.addReserveAsynchronous(newReserve);
-
-                    AlarmManagerUtil.setAlarm(v.getContext(), newReserve.finished, console.id, newReserve.id);
+                    MyDataBase.addReserveAsynchronous(v.getContext(), console.id, newReserve);
                 }
             });
         }
 
-        private List<String> separateGames(String games){
+        private List<String> separateGames(String games) {
             List<String> splitGames = new ArrayList<>();
             int beginningOfCurrWord = 0;
-            for(int i = 0; i < games.length() - 1; i++){
+            for (int i = 0; i < games.length() - 1; i++) {
                 char ch = games.charAt(i);
-                if(ch == ';'){
-                    splitGames.add(games.substring(beginningOfCurrWord,i).trim());
+                if (ch == ';') {
+                    splitGames.add(games.substring(beginningOfCurrWord, i).trim());
                     beginningOfCurrWord = i + 1;
                 }
             }
 
-            if(games.charAt(games.length() - 1) == ';'){
+            if (games.charAt(games.length() - 1) == ';') {
                 splitGames.add(games.substring(beginningOfCurrWord, games.length() - 1).trim());
             } else {
                 splitGames.add(games.substring(beginningOfCurrWord).trim());
